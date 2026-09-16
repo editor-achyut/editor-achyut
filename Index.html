@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor Achyut | Video Editor</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050505;
+  color:#fff;
+  line-height:1.6;
+}
+
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  padding:18px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(5,5,5,.75);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #222;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.logo span{
+  color:#b48cff;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:25px;
+  font-size:14px;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:120px 7% 70px;
+  background:
+    radial-gradient(circle at 80% 30%,#5c2bb655,transparent 35%),
+    radial-gradient(circle at 20% 70%,#a64cff22,transparent 30%),
+    #050505;
+}
+
+.hero-content{
+  max-width:800px;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 14px;
+  border:1px solid #6d4a9e;
+  border-radius:30px;
+  color:#d7c0ff;
+  margin-bottom:25px;
+  font-size:13px;
+}
+
+h1{
+  font-size:clamp(48px,9vw,100px);
+  line-height:1;
+  margin-bottom:25px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#fff,#b78cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:#aaa;
+  max-width:620px;
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.btn{
+  display:inline-block;
+  padding:14px 25px;
+  border-radius:30px;
+  background:#fff;
+  color:#000;
+  text-decoration:none;
+  font-weight:700;
+  margin-right:10px;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px #ffffff20;
+}
+
+.btn.secondary{
+  background:#151515;
+  color:#fff;
+  border:1px solid #333;
+}
+
+section{
+  padding:100px 7%;
+}
+
+.section-title{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.section-sub{
+  color:#999;
+  margin-bottom:45px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#0d0d0d;
+  border:1px solid #252525;
+  border-radius:22px;
+  padding:30px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:#704ca0;
+}
+
+.card h3{
+  margin:15px 0 10px;
+}
+
+.card p{
+  color:#999;
+}
+
+.icon{
+  font-size:35px;
+}
+
+.price{
+  font-size:48px;
+  font-weight:800;
+  margin:15px 0;
+}
+
+.price span{
+  font-size:16px;
+  color:#888;
+}
+
+.portfolio{
+  background:#090909;
+}
+
+.video-box{
+  min-height:260px;
+  border-radius:22px;
+  border:1px solid #292929;
+  background:
+    linear-gradient(135deg,#151515,#090909);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+}
+
+.play{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  color:#000;
+  font-size:25px;
+  margin:auto;
+}
+
+.form-box{
+  max-width:650px;
+  background:#0d0d0d;
+  border:1px solid #282828;
+  border-radius:25px;
+  padding:30px;
+}
+
+input,textarea,select{
+  width:100%;
+  margin:8px 0 18px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #333;
+  background:#080808;
+  color:#fff;
+  outline:none;
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+label{
+  font-size:14px;
+  color:#bbb;
+}
+
+footer{
+  padding:40px 7%;
+  text-align:center;
+  color:#777;
+  border-top:1px solid #222;
+}
+
+.social{
+  margin-top:15px;
+}
+
+.social a{
+  color:#c59cff;
+  text-decoration:none;
+  margin:0 8px;
+}
+
+@media(max-width:700px){
+  nav{
+    padding:15px 5%;
+  }
+
+  nav div:last-child{
+    display:none;
+  }
+
+  section{
+    padding:75px 5%;
+  }
+
+  .hero{
+    padding-left:5%;
+    padding-right:5%;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Editor <span>Achyut</span></div>
+
+  <div>
+    <a href="#home">Home</a>
+    <a href="#portfolio">Videos</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+
+    <div class="badge">VIDEO EDITOR • REELS • SHORTS</div>
+
+    <h1>
+      Your story.<br>
+      <span class="gradient">My edit.</span>
+    </h1>
+
+    <p>
+      I create clean, engaging and cinematic edits for Reels,
+      Shorts and long-form videos — turning raw footage into
+      content people want to watch.
+    </p>
+
+    <a class="btn" href="#contact">Let's Start →</a>
+    <a class="btn secondary" href="#portfolio">View Work</a>
+
+  </div>
+</section>
+
+<section id="services">
+
+  <h2 class="section-title">What I Edit</h2>
+  <p class="section-sub">
+    Editing designed for creators, brands and personal projects.
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">🎬</div>
+      <h3>Reels & Shorts</h3>
+      <p>
+        Fast-paced edits, captions, transitions and engaging
+        storytelling for short-form content.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">▶️</div>
+      <h3>YouTube Videos</h3>
+      <p>
+        Clean long-form editing for videos, tutorials,
+        entertainment and creator content.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">✨</div>
+      <h3>Cinematic Editing</h3>
+      <p>
+        Music, colour, pacing and transitions designed to
+        give your footage a premium feel.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+
+  <h2 class="section-title">My Portfolio</h2>
+  <p class="section-sub">
+    Watch some of my latest edits.
+  </p>
+
+  <div class="cards">
+
+    <div class="video-box">
+      <div>
+        <div class="play">▶</div>
+        <h3 style="margin-top:20px;">Portfolio Video 01</h3>
+        <p style="color:#888;">
+          Your uploaded video will appear here.
+        </p>
+      </div>
+    </div>
+
+    <div class="video-box">
+      <div>
+        <div class="play">▶</div>
+        <h3 style="margin-top:20px;">Portfolio Video 02</h3>
+        <p style="color:#888;">
+          Your uploaded video will appear here.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <h2 class="section-title">Simple Pricing</h2>
+  <p class="section-sub">
+    Start your edit without complicated pricing.
+  </p>
+
+  <div class="card" style="max-width:420px;">
+
+    <h3>Per Video Edit</h3>
+
+    <div class="price">
+      ₹200 <span>/ video</span>
+    </div>
+
+    <p>
+      Final pricing can vary depending on the length,
+      complexity and editing requirements.
+    </p>
+
+    <br>
+
+    <a class="btn" href="#contact">Book an Edit</a>
+
+  </div>
+
+</section>
+
+<section id="contact">
+
+  <h2 class="section-title">Let's Start</h2>
+  <p class="section-sub">
+    Tell me what you want to create.
+  </p>
+
+  <div class="form-box">
+
+    <label>Name</label>
+    <input type="text" placeholder="Your name">
+
+    <label>Email</label>
+    <input type="email" placeholder="Your email">
+
+    <label>Phone</label>
+    <input type="tel" placeholder="Your phone number">
+
+    <label>Subject</label>
+    <input type="text" placeholder="Project subject">
+
+    <label>Budget</label>
+    <input type="text" placeholder="Your budget">
+
+    <label>Editing Type</label>
+    <select>
+      <option>Reel / Short</option>
+      <option>YouTube Video</option>
+      <option>Cinematic Video</option>
+      <option>Other</option>
+    </select>
+
+    <label>Project Details</label>
+    <textarea placeholder="Tell me about your video..."></textarea>
+
+    <button class="btn" type="button"
+      onclick="alert('Your request form is ready. Supabase connection will be added next.')">
+      Send Request →
+    </button>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <strong>Editor Achyut</strong>
+
+  <div class="social">
+    <a href="mailto:vt569613@gmail.com">Email</a>
+    <a href="https://instagram.com/achyut_tiwari_" target="_blank">
+      Instagram
+    </a>
+  </div>
+
+  <p style="margin-top:20px;">
+    © 2026 Editor Achyut. All rights reserved.
+  </p>
+
+</footer>
+
+</body>
+  </html>
